@@ -1,0 +1,18 @@
+<section id="technologies" class="technologies">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-badge">Tech Stack</span>
+      <h2 class="section-title">Technologies We Master</h2>
+      <p class="section-subtitle">Leveraging the best tools and frameworks in the industry</p>
+    </div>
+    
+    <div class="tech-grid">
+      <div class="tech-card fade-up" *ngFor="let tech of technologies; let i = index" [style.animation-delay]="(i * 0.03) + 's'">
+        <div class="tech-icon" [style.border-color]="tech.color" [style.box-shadow]="'0 0 15px ' + tech.color + '40'">
+          <i [class]="'bi ' + tech.icon" [style.color]="tech.color"></i>
+        </div>
+        <span>{{ tech.name }}</span>
+      </div>
+    </div>
+  </div>
+</section>

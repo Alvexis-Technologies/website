@@ -1,0 +1,119 @@
+<div class="fade-in">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Dashboard</h2>
+    <div class="text-muted">
+      <i class="bi bi-calendar3"></i> {{ today | date:'fullDate' }}
+    </div>
+  </div>
+  
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div *ngIf="!isLoading">
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+          <p class="mb-1">Total Users</p>
+          <h3>{{ stats.users?.total || 0 }}</h3>
+          <small>Active: {{ stats.users?.active || 0 }}</small>
+        </div>
+      </div>
+      
+      <div class="col-md-3 mb-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+          <p class="mb-1">New Users Today</p>
+          <h3>{{ stats.users?.newToday || 0 }}</h3>
+          <small>Total registrations</small>
+        </div>
+      </div>
+      
+      <div class="col-md-3 mb-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+          <p class="mb-1">Total Activities</p>
+          <h3>{{ stats.logs?.total || 0 }}</h3>
+          <small>Today: {{ stats.logs?.today || 0 }}</small>
+        </div>
+      </div>
+      
+      <div class="col-md-3 mb-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">
+          <p class="mb-1">Failed Logins</p>
+          <h3>{{ stats.logs?.failedLoginsToday || 0 }}</h3>
+          <small>Today only</small>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Charts -->
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">User Growth (Last 7 Days)</h5>
+          </div>
+          <div class="card-body">
+            <canvas id="userGrowthChart" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Hourly Activity (Today)</h5>
+          </div>
+          <div class="card-body">
+            <canvas id="activityChart" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Recent Activities -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Recent Activities</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Action</th>
+                <th>Status</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let activity of stats.recentActivities">
+                <td>{{ activity.userEmail }}</td>
+                <td>
+                  <span class="badge" [class.bg-info]="activity.action === 'login'"
+                        [class.bg-success]="activity.action === 'create_user'"
+                        [class.bg-warning]="activity.action === 'update_user'">
+                    {{ activity.action | titlecase }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge" [class.bg-success]="activity.status === 'success'"
+                        [class.bg-danger]="activity.status === 'failed'">
+                    {{ activity.status | uppercase }}
+                  </span>
+                </td>
+                <td>{{ activity.timestamp | date:'medium' }}</td>
+              </tr>
+              <tr *ngIf="stats.recentActivities?.length === 0">
+                <td colspan="4" class="text-center">No recent activities</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

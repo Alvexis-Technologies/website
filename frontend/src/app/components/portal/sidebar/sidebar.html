@@ -1,0 +1,121 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <!-- Logo Section -->
+  <div class="sidebar-header">
+    <div class="logo-wrapper" *ngIf="!isCollapsed">
+      <h2>ArdhiVision-Tz</h2>
+      <small>by Alvexis Technologies</small>
+    </div>
+    <div class="logo-wrapper collapsed" *ngIf="isCollapsed">
+      <h2>AV</h2>
+    </div>
+  </div>
+
+  <!-- User Info (when expanded) -->
+  <!-- <div class="user-info" *ngIf="!isCollapsed && getCurrentUser()">
+    <div class="user-avatar">
+      <i class="bi bi-person-circle"></i>
+    </div>
+    <div class="user-details">
+      <div class="user-name">{{ getCurrentUser()?.firstName }} {{ getCurrentUser()?.lastName }}</div>
+      <div class="user-role">{{ getCurrentUser()?.role | uppercase }}</div>
+    </div>
+  </div> -->
+
+  <!-- Navigation Menu -->
+  <nav class="sidebar-nav">
+    <ng-container *ngFor="let group of menuGroups">
+      <!-- Only show group if user has permission to see any item -->
+      <div class="nav-group" *ngIf="hasAnyVisibleItem(group)">
+        
+        <!-- Group Header (collapsible) -->
+        <div class="nav-group-header" (click)="toggleSection(group.title)" *ngIf="!isCollapsed">
+          <i [class]="'bi ' + group.icon"></i>
+          <span>{{ group.title }}</span>
+          <i class="bi" [class.bi-chevron-down]="expandedSections[group.title]" [class.bi-chevron-right]="!expandedSections[group.title]"></i>
+        </div>
+        
+        <!-- Collapsed view (just icon) -->
+        <div class="nav-group-header collapsed" *ngIf="isCollapsed">
+          <i [class]="'bi ' + group.icon"></i>
+        </div>
+        
+        <!-- Group Items -->
+        <div class="nav-group-items" *ngIf="expandedSections[group.title] || isCollapsed">
+          <ng-container *ngFor="let item of group.items">
+            <a *ngIf="hasPermission(item.roles)" 
+               [routerLink]="item.path"
+               routerLinkActive="active"
+               class="nav-link"
+               [class.active]="isActive(item.path)">
+              <i [class]="'bi ' + item.icon"></i>
+              <span *ngIf="!isCollapsed">{{ item.label }}</span>
+              <span class="nav-badge" *ngIf="item.badge">{{ item.badge }}</span>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </nav>
+
+  <!-- Footer Section -->
+  <!-- <div class="sidebar-footer" *ngIf="!isCollapsed">
+    <div class="footer-item" (click)="logout()">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </div>
+    <div class="footer-version">
+      <small>v2.0.0 | © 2026</small>
+    </div>
+  </div> -->
+  
+  <!-- Collapsed footer -->
+  <!-- <div class="sidebar-footer collapsed" *ngIf="isCollapsed">
+    <div class="footer-item" (click)="logout()">
+      <i class="bi bi-box-arrow-right"></i>
+    </div>
+  </div> -->
+</div>
+
+
+
+<!-- 
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <h3 *ngIf="!isCollapsed">ArdhiVision-Tz</h3>
+    <h3 *ngIf="isCollapsed">AV</h3>
+    <small *ngIf="!isCollapsed">by Alvexis Technologies</small>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <ng-container *ngFor="let item of menuItems">
+      <a *ngIf="hasPermission(item.roles)" 
+         [routerLink]="item.path"
+         routerLinkActive="active"
+         class="nav-link"
+         [class.active]="isActive(item.path)">
+        <i [class]="'bi ' + item.icon"></i>
+        <span *ngIf="!isCollapsed">{{ item.label }}</span>
+      </a>
+    </ng-container>
+  </nav>
+</div> -->
+
+<!-- <div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <h3 *ngIf="!isCollapsed">ArdhiVision-Tz</h3>
+    <h3 *ngIf="isCollapsed">AV</h3>
+    <small *ngIf="!isCollapsed">by Alvexis Technologies</small>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <a *ngFor="let item of menuItems" 
+       *ngIf="hasPermission(item.roles)"
+       [routerLink]="item.path"
+       routerLinkActive="active"
+       class="nav-link"
+       [class.active]="isActive(item.path)">
+      <i [class]="'bi ' + item.icon"></i>
+      <span *ngIf="!isCollapsed">{{ item.label }}</span>
+    </a>
+  </nav>
+</div> -->

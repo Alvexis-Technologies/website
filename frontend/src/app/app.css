@@ -1,0 +1,11 @@
+/* .alvexis-landing {
+  overflow-x: hidden;
+  /* background: #0a0a0a; 
+  background: white;
+  background-color: white;
+} */
+
+html, body {
+  /* This prevents the "bounce" effect */
+  overscroll-behavior: none;
+}

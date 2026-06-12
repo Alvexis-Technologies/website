@@ -1,0 +1,23 @@
+<section id="why-us" class="why-us">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-badge">Why Choose Us</span>
+      <h2 class="section-title">What Makes Us Different</h2>
+      <p class="section-subtitle">We combine innovation, expertise, and dedication to deliver excellence</p>
+    </div>
+    
+    <div class="why-grid">
+      <div class="why-card fade-up" *ngFor="let reason of reasons; let i = index" [style.animation-delay]="(i * 0.1) + 's'">
+        <div class="why-icon">
+          <i [class]="'bi ' + reason.icon"></i>
+        </div>
+        <h3>{{ reason.title }}</h3>
+        <p>{{ reason.description }}</p>
+        <div class="why-stat">
+          <span class="stat-number">{{ reason.stat }}</span>
+          <span class="stat-label">{{ reason.statLabel }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

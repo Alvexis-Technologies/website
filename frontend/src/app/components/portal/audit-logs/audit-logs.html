@@ -1,0 +1,116 @@
+<div class="audit-container fade-in">
+  <h2 class="mb-4">Audit Logs</h2>
+  
+  <!-- Statistics Cards -->
+  <div class="row mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+        <p class="mb-1">Total Actions</p>
+        <h3>{{ statistics.totalActions || 0 }}</h3>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+      <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">
+        <p class="mb-1">Unique Users</p>
+        <h3>{{ statistics.uniqueUsers || 0 }}</h3>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+      <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+        <p class="mb-1">Records</p>
+        <h3>{{ pagination.total }}</h3>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="filters.action" (change)="onFilterChange()">
+            <option value="">All Actions</option>
+            <option *ngFor="let action of actions" [value]="action">{{ formatAction(action) }}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <input type="date" class="form-control" [(ngModel)]="filters.startDate" (change)="onFilterChange()" placeholder="Start Date">
+        </div>
+        <div class="col-md-3">
+          <input type="date" class="form-control" [(ngModel)]="filters.endDate" (change)="onFilterChange()" placeholder="End Date">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-outline-secondary w-100" (click)="clearFilters()">
+            <i class="bi bi-x-circle"></i> Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Audit Logs Table -->
+  <div class="card">
+    <div class="card-body">
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      
+      <div *ngIf="!isLoading" class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Performed By</th>
+              <th>Resource</th>
+              <th>Changes</th>
+              <th>IP Address</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of logs">
+              <td>
+                <span class="badge" [class]="getActionBadgeClass(log.action)">
+                  {{ formatAction(log.action) }}
+                </span>
+               </td>
+              <td>
+                <strong>{{ log.performedBy?.firstName }} {{ log.performedBy?.lastName }}</strong><br>
+                <small>{{ log.performedBy?.email }}</small>
+               </td>
+              <td>{{ log.targetResource }}: {{ log.targetId }} </td>
+              <td>
+                <pre class="small mb-0">{{ getChangesPreview(log.changes) }}</pre>
+               </td>
+              <td>{{ log.ipAddress }} </td>
+              <td>{{ log.createdAt | date:'medium' }} </td>
+             </tr>
+            <tr *ngIf="logs.length === 0">
+              <td colspan="6" class="text-center">No audit logs found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination -->
+      <nav *ngIf="pagination.pages > 1" aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+          <li class="page-item" [class.disabled]="pagination.page === 1">
+            <a class="page-link" (click)="onPageChange(pagination.page - 1)">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let page of [].constructor(pagination.pages); let i = index">
+            <a class="page-link" [class.active]="pagination.page === i + 1" 
+               (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="pagination.page === pagination.pages">
+            <a class="page-link" (click)="onPageChange(pagination.page + 1)">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-badge">What We Do</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Comprehensive technology solutions tailored to your needs</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card fade-up" *ngFor="let service of services; let i = index" [style.animation-delay]="(i * 0.1) + 's'">
+        <div class="service-icon" [style.background]="'linear-gradient(135deg, ' + service.color + '20, ' + service.color + '10)'">
+          <i [class]="'bi ' + service.icon" [style.color]="service.color"></i>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <div class="service-image-bg">
+          <div class="pattern-dots"></div>
+        </div>
+        <div class="service-hover" [style.background]="service.color"></div>
+      </div>
+    </div>
+  </div>
+</section>
