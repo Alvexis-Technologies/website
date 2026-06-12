@@ -117,7 +117,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.app;
+  private apiUrl = environment.url;
   private jwtHelper = new JwtHelperService();
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
