@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private title: Title,private meta: Meta) {}
 
     ngOnInit() {
-      this.title.setTitle('Alvexis Technologies | AI & Software Development');
+      this.title.setTitle('Alvexis Technologies - Engineering the Future Through Innovation');
 
       this.meta.updateTag({
         name: 'description',
@@ -23,7 +23,7 @@ export class AppComponent {
 
     this.meta.updateTag({
       name: 'keywords',
-      content: 'AI Tanzania, web development, mobile apps, software company Dodoma'
+      content: 'AI Tanzania, web development, mobile apps, software company Dodoma,Alvexis,Alvexistech,Alvexis Technologies,Anovi Buckoti,Jastin Pius,Alfred Rwambo'
     });
   }
 }
