@@ -17,9 +17,9 @@ export class TeamComponent {
       // image: 'https://randomuser.me/api/portraits/men/32.jpg',
       image: 'images/team/a.jpg',
       social: {
-        linkedin: 'https://linkedin.com/in/james-mtambo',
+        linkedin: 'https://linkedin.com/in/alfred-rwambo-b115b2389',
         // twitter: 'https://twitter.com/jamesmtambo',
-        github: 'https://github.com/jamesmtambo'
+        github: 'https://github.com/alfred624'
       }
     },
     {
@@ -29,9 +29,9 @@ export class TeamComponent {
       bio: 'Builds cross-platform mobile applications and user-friendly mobile experiences ',
       image: 'images/team/j.jpg',
       social: {
-        linkedin: 'https://linkedin.com/in/sarah-kilimanjaro',
+        linkedin: 'https://linkedin.com/in/jastin-salvatory-760095321',
         // twitter: 'https://twitter.com/sarahkili',
-        github: 'https://github.com/sarahkili'
+        github: 'https://github.com/jastin0012'
       }
     },
     {

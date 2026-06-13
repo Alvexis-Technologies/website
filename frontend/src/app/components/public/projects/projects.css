@@ -135,6 +135,9 @@
   transition: transform 0.5s ease;
 }
 
+.project-image img{
+  display: none;
+}
 .project-card:hover .project-img {
   transform: scale(1.1);
 }
