@@ -13,16 +13,16 @@ import { TimeLike } from 'node:fs';
 })
 export class AboutComponent implements AfterViewInit {
 
-   constructor(private title:Title,private meta: Meta){}
+  //  constructor(private title:Title,private meta: Meta){}
 
-    ngOnInit() {
-      this.title.setTitle('About Us | Alvexis Technologies');
+  //   ngOnInit() {
+  //     this.title.setTitle('About Us | Alvexis Technologies');
 
-      this.meta.updateTag({
-        name: 'description',
-        content: 'Learn more about Alvexis Technologies and our mission in AI and software development.'
-      });
-   }
+  //     this.meta.updateTag({
+  //       name: 'description',
+  //       content: 'Learn more about Alvexis Technologies and our mission in AI and software development.'
+  //     });
+  //  }
   
   ngAfterViewInit(): void {
     this.initScrollReveal();

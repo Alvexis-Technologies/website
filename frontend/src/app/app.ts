@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { Title } from '@angular/platform-browser';
-import { Meta } from '@angular/platform-browser';
+import { Title,Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ export class AppComponent {
 
     ngOnInit() {
       this.title.setTitle('Alvexis Technologies | AI & Software Development');
-      
+
       this.meta.updateTag({
         name: 'description',
         content: 'Alvexis Technologies builds AI systems, web applications, and mobile apps for modern digital transformation.'

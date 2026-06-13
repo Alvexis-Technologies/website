@@ -11,7 +11,7 @@ export class ProjectsComponent {
   projects = [
     {
       title: 'ArdhiVision-Tz',
-      description: 'National digital land management platform with GIS integration, escrow marketplace, and government verification workflows.',
+      description: 'Digital land management platform with GIS integration, escrow marketplace, and government verification workflows.',
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop',
       tags: ['Angular', 'Node.js', 'PostGIS', 'Blockchain'],
       link: '#'
@@ -19,7 +19,7 @@ export class ProjectsComponent {
     {
       title: 'AI Security Platform',
       description: 'Intelligent security monitoring system using computer vision and anomaly detection for enterprise clients.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop',
+      image: 'images/projects/agrihealth.png',
       tags: ['Python', 'TensorFlow', 'React', 'AWS'],
       link: '#'
     },

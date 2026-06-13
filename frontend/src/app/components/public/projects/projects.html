@@ -9,19 +9,20 @@
     <div class="projects-grid">
       <div class="project-card fade-up" *ngFor="let project of projects; let i = index" [style.animation-delay]="(i * 0.1) + 's'">
         <div class="project-image">
-          <div class="image-placeholder">
+          <img [src]="project.image" [alt]="project.title">
+          <!-- <div class="image-placeholder">
             <i class="bi bi-display"></i>
-          </div>
-          <div class="project-overlay">
+          </div> -->
+          <!-- <div class="project-overlay">
             <button class="btn-view" (click)="viewProject(project.link)">View Project</button>
-          </div>
+          </div> -->
         </div>
         <div class="project-content">
           <h3>{{ project.title }}</h3>
           <p>{{ project.description }}</p>
-          <div class="project-tags">
+          <!-- <div class="project-tags">
             <span class="tag" *ngFor="let tag of project.tags">{{ tag }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

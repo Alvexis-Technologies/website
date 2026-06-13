@@ -39,7 +39,7 @@ export class TeamComponent {
       role: 'Co-Founder | Software Architect',
       expertise: 'Full-Stack Engineering & Cloud Infrastructure',
       bio: 'Designs and builds scalable software systems and backend infrastructure',
-      image: 'images/logo/FullLogo.png',
+      image: 'images/team/b.JPG',
       social: {
         linkedin: 'https://www.linkedin.com/in/buckoti/',
         // twitter: 'https://twitter.com/michaelnyerere',
