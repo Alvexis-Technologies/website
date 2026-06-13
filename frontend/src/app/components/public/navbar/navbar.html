@@ -1,0 +1,95 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <!-- Logo - Easy to replace image -->
+    <div class="nav-logo" (click)="scrollToSection('hero')">
+      <img src="images/logo/FullLogo.png"
+           alt="Alvexis Technologies" 
+           class="nav-logo-img"
+           (error)="onLogoError($event)">
+      <span class="logo-text">Alvexis<span>Tech</span></span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <ul class="nav-menu desktop">
+      <li *ngFor="let item of navItems">
+        <a href="javascript:void(0)" 
+           (click)="scrollToSection(item.link)"
+           [class.active]="activeSection === item.link">
+          <i [class]="'bi ' + item.icon"></i>
+          <span>{{ item.name }}</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- <button class="btn btn-primary btn-lg" (click)="navigateTo('/login')">
+       <i class="bi bi-box-arrow-in-right"></i> Login
+    </button> -->
+
+    <!-- CTA Button Desktop -->
+    <div class="nav-cta desktop">
+      <button class="btn-cta" (click)="navigateTo('/portal/login')">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </button>
+      <button class="btn-cta" (click)="scrollToSection('contact')">
+          <i class="bi bi-chat-dots"></i> Get Started
+      </button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <span class="hamburger" [class.active]="isMobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.active]="isMobileMenuOpen">
+    <div class="mobile-menu-header">
+      <img src="images/logo/FullLogo.png"
+           alt="Alvexis Technologies" 
+           class="mobile-logo-img"
+           (error)="onMobileLogoError($event)">
+      <span>Alvexis Technologies</span>
+    </div>
+    
+    <ul class="mobile-nav-items">
+      <li *ngFor="let item of navItems">
+        <a href="javascript:void(0)" 
+        (click)="scrollToSection(item.link)"
+        [class.active]="activeSection === item.link">
+          <i [class]="'bi ' + item.icon"></i>
+          <span>{{ item.name }}</span>
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </li>
+    </ul>
+    
+    <div class="mobile-menu-footer">
+      <!-- <button class="btn-cta" (click)="navigateTo('/login')">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </button>
+      <button class="btn-cta full-width" (click)="scrollToSection('contact')">
+        <i class="bi bi-chat-dots"></i> Get Started
+      </button> -->
+      <div class="nav-cta mobile">
+        <button class="btn-cta auto-scale" (click)="navigateTo('/portal/login')">
+          <i class="bi bi-box-arrow-in-right"></i> Login
+        </button>
+        <button class="btn-cta auto-scale" (click)="scrollToSection('contact')">
+            <i class="bi bi-chat-dots"></i> Get Started
+        </button>
+      </div>
+      <div class="mobile-social">
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Overlay -->
+  <div class="menu-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</nav>

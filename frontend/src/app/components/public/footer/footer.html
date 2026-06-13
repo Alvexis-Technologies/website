@@ -1,0 +1,55 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <!-- Footer Logo -  -->
+        <!-- <div class="footer-logo">
+          <img src="images/logo/FullLogo.png" 
+               alt="Alvexis Technologies" 
+               class="footer-logo-img"
+               (error)="onFooterLogoError($event)">
+        </div> -->
+        <h3>Alvexis <span>Technologies</span></h3>
+        <p>Engineering the Future Through Innovation</p>
+        <div class="footer-social">
+          <a *ngFor="let social of socialLinks" [href]="social.link" target="_blank" [attr.aria-label]="social.name">
+            <i [class]="'bi ' + social.icon"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li *ngFor="let link of quickLinks">
+            <a href="javascript:void(0)" (click)="scrollToSection(link.link)">{{ link.name }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li *ngFor="let service of services">
+            <a href="javascript:void(0)" (click)="scrollToSection(service.link)">{{ service.name }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <ul>
+          <!-- <li><i class="bi bi-envelope"></i> hello@alvexistech.com</li> -->
+           <li><i class="bi bi-envelope"></i> info@alvexistech.com</li>
+          <li><i class="bi bi-telephone"></i> +255 749 659 994</li>
+          <li><i class="bi bi-geo-alt"></i> Dodoma, Tanzania</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Alvexis Technologies. All rights reserved.</p>
+      <p>Innovation | Integrity | Excellence | Security | Transformation</p>
+    </div>
+  </div>
+</footer>
